@@ -54,6 +54,7 @@
     "date": null,
     "time": "",
     "duration": 30,
-    "notes": ""
+    "notes": "",
+    "isRescheduleMode": false
   }
 }

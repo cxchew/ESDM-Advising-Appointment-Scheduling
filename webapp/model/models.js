@@ -55,7 +55,8 @@ function (JSONModel, Device) {
                     date: null,
                     time: "",
                     duration: 30,
-                    notes: ""
+                    notes: "",
+                    isRescheduleMode: false
                 }
             });
             // Try loading mock appointments from JSON; ignore errors if file not found

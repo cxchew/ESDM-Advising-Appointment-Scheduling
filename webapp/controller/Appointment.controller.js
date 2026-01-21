@@ -68,7 +68,8 @@ sap.ui.define([
                 date: null,
                 time: "",
                 duration: 30,
-                notes: ""
+                notes: "",
+                isRescheduleMode: false
             });
 
             MessageToast.show(this.getResourceBundle().getText("created"));
@@ -100,7 +101,9 @@ sap.ui.define([
             var oAppt = oModel.getProperty(sPath);
             
             // Populate draft with existing appointment data
-            oModel.setProperty("/draft", JSON.parse(JSON.stringify(oAppt)));
+            oAppt = JSON.parse(JSON.stringify(oAppt));
+            oAppt.isRescheduleMode = true;
+            oModel.setProperty("/draft", oAppt);
             this._updateFilteredSlots();
             
             MessageToast.show(this.getResourceBundle().getText("rescheduleMode"));

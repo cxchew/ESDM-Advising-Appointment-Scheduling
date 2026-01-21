@@ -46,12 +46,12 @@
 
                         <Toolbar design="Transparent">
                             <ToolbarSpacer/>
-                            <Button text="{i18n>create}" type="Emphasized" press="onCreateAppointment"/>
+                            <Button text="{= ${appointments>/draft/isRescheduleMode} ? 'Update Appointment' : ${i18n>create} }" type="Emphasized" press="onCreateAppointment"/>
                         </Toolbar>
                     </f:content>
                 </f:SimpleForm>
 
-                <Table id="tblAppointments" width="100%" items="{appointments>/appointments}">
+                <Table id="tblAppointments" width="100%" items="{appointments>/appointments}" alternateRowColors="true">
                     <headerToolbar>
                         <Toolbar>
                             <Title text="{i18n>appointmentsList}" level="H3"/>
@@ -60,24 +60,26 @@
                         </Toolbar>
                     </headerToolbar>
                     <columns>
-                        <Column><Text text="{i18n>studentName}"/></Column>
-                        <Column><Text text="{i18n>studentId}"/></Column>
-                        <Column><Text text="{i18n>advisor}"/></Column>
-                        <Column><Text text="{i18n>date}"/></Column>
-                        <Column><Text text="{i18n>time}"/></Column>
-                        <Column><Text text="{i18n>notes}"/></Column>
-                        <Column width="8rem"><Text text="{i18n>actions}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>studentName}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>studentId}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>advisor}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>date}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>time}"/></Column>
+                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>duration}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"><Text text="{i18n>notes}"/></Column>
+                        <Column width="10rem" minScreenWidth="Desktop"><Text text="{i18n>actions}"/></Column>
                     </columns>
                     <items>
                         <ColumnListItem>
                             <cells>
-                                <Text text="{appointments>studentName}"/>
-                                <Text text="{appointments>studentId}"/>
-                                <Text text="{appointments>advisorName}"/>
-                                <Text text="{appointments>date}"/>
-                                <Text text="{appointments>time}"/>
-                                <Text text="{appointments>notes}"/>
-                                <HBox justifyContent="End">
+                                <Text text="{appointments>studentName}" wrapping="true"/>
+                                <Text text="{appointments>studentId}" wrapping="true"/>
+                                <Text text="{appointments>advisorName}" wrapping="true"/>
+                                <Text text="{appointments>date}" wrapping="true"/>
+                                <Text text="{appointments>time}" wrapping="true"/>
+                                <Text text="{appointments>duration}" wrapping="true"/>
+                                <Text text="{appointments>notes}" wrapping="true"/>
+                                <HBox justifyContent="End" wrap="Wrap">
                                     <Button text="{i18n>reschedule}" type="Transparent" press="onRescheduleAppointment"/>
                                     <Button text="{i18n>cancel}" type="Transparent" press="onCancelAppointment"/>
                                 </HBox>
