@@ -32,7 +32,7 @@
                         <DatePicker value="{appointments>/draft/date}" valueFormat="yyyy-MM-dd" displayFormat="long" change="onDateChange"/>
 
                         <Label text="{i18n>time}"/>
-                        <Select selectedKey="{appointments>/draft/time}" items="{appointments>/filteredSlots}">
+                        <Select selectedKey="{appointments>/draft/time}" items="{appointments>/timeSlots}">
                             <items>
                                 <core:Item key="{appointments>}" text="{appointments>}"/>
                             </items>
