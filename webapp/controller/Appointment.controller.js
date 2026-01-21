@@ -28,26 +28,46 @@ sap.ui.define([
                 return;
             }
 
+            // Check for overlapping appointments
+            var aAppointments = oModel.getProperty("/appointments") || [];
+            var bConflict = aAppointments.some(function(appt) {
+                if (appt.id === oDraft.id) return false; // Skip self when rescheduling
+                return appt.advisorId === oDraft.advisorId && appt.date === oDraft.date &&
+                    this._timesOverlap(appt.time, appt.duration, oDraft.time, oDraft.duration);
+            }.bind(this));
+            if (bConflict) {
+                MessageBox.error(this.getResourceBundle().getText("conflictError"));
+                return;
+            }
+
             // Resolve advisor name
             var aAdvisors = oModel.getProperty("/advisors") || [];
             var oAdvisor = aAdvisors.find(function(a){ return a.id === oDraft.advisorId; });
             oDraft.advisorName = oAdvisor ? oAdvisor.name : oDraft.advisorId;
 
-            // Generate id
-            oDraft.id = "APT-" + Math.floor(1000 + Math.random() * 9000);
-
-            // Append to appointments
-            var aAppointments = oModel.getProperty("/appointments") || [];
-            aAppointments.push(oDraft);
+            var bIsReschedule = !!oDraft.id;
+            if (bIsReschedule) {
+                // Update existing
+                var iIndex = aAppointments.findIndex(function(a){ return a.id === oDraft.id; });
+                if (iIndex >= 0) {
+                    aAppointments[iIndex] = oDraft;
+                }
+            } else {
+                // Generate id for new
+                oDraft.id = "APT-" + Math.floor(1000 + Math.random() * 9000);
+                aAppointments.push(oDraft);
+            }
             oModel.setProperty("/appointments", aAppointments);
 
             // Reset draft
             oModel.setProperty("/draft", {
+                id: null,
                 studentName: "",
                 studentId: "",
                 advisorId: "",
                 date: null,
                 time: "",
+                duration: 30,
                 notes: ""
             });
 
@@ -71,6 +91,19 @@ sap.ui.define([
                     }
                 }.bind(this)
             });
+        },
+
+        onRescheduleAppointment: function(oEvent) {
+            var oModel = this._appointmentsModel;
+            var oItem = oEvent.getSource().getParent().getParent();
+            var sPath = oItem.getBindingContext("appointments").getPath();
+            var oAppt = oModel.getProperty(sPath);
+            
+            // Populate draft with existing appointment data
+            oModel.setProperty("/draft", JSON.parse(JSON.stringify(oAppt)));
+            this._updateFilteredSlots();
+            
+            MessageToast.show(this.getResourceBundle().getText("rescheduleMode"));
         },
 
         onStudentChange: function(oEvent) {
@@ -108,12 +141,17 @@ sap.ui.define([
             var mAdvisor = oAvail[sAdvisorId] || {};
             var aSlotsForDay = mAdvisor[String(iDay)] || [];
 
-            // Remove already booked slots for advisor on the selected date
+            // Remove slots that overlap with existing bookings
             var aAppointments = oModel.getProperty("/appointments") || [];
-            var aBookedTimes = aAppointments
-                .filter(function(a){ return a.advisorId === sAdvisorId && a.date === sDate; })
-                .map(function(a){ return a.time; });
-            var aFiltered = aSlotsForDay.filter(function(t){ return aBookedTimes.indexOf(t) === -1; });
+            var sDraftId = oModel.getProperty("/draft/id");
+            var aFiltered = aSlotsForDay.filter(function(slot) {
+                return !aAppointments.some(function(appt) {
+                    if (appt.id === sDraftId) return false; // Allow rescheduling to same slot
+                    if (appt.advisorId !== sAdvisorId || appt.date !== sDate) return false;
+                    var iDraftDuration = oModel.getProperty("/draft/duration") || 30;
+                    return this._timesOverlap(appt.time, appt.duration || 30, slot, iDraftDuration);
+                }.bind(this));
+            }.bind(this));
             oModel.setProperty("/filteredSlots", aFiltered);
         },
 
@@ -124,6 +162,19 @@ sap.ui.define([
             var m = parseInt(parts[1], 10) - 1;
             var d = parseInt(parts[2], 10);
             return new Date(y, m, d);
+        },
+
+        _timesOverlap: function(time1, duration1, time2, duration2) {
+            // Parse HH:MM and convert to minutes since midnight
+            var toMinutes = function(sTime) {
+                var parts = sTime.split(":");
+                return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+            };
+            var start1 = toMinutes(time1);
+            var end1 = start1 + parseInt(duration1, 10);
+            var start2 = toMinutes(time2);
+            var end2 = start2 + parseInt(duration2, 10);
+            return (start1 < end2 && end1 > start2);
         },
 
         getResourceBundle: function() {
