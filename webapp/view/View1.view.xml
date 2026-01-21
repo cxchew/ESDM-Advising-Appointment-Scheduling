@@ -2,5 +2,14 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox class="sapUiSmallMargin" width="100%">
+                <Text text="{i18n>welcomeText}"/>
+                <Toolbar design="Transparent">
+                    <ToolbarSpacer/>
+                    <Button text="{i18n>openAppointments}" type="Emphasized" press="onNavToAppointments"/>
+                </Toolbar>
+            </VBox>
+        </content>
     </Page>
 </mvc:View>

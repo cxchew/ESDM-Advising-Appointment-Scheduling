@@ -1,0 +1,53 @@
+{
+  "advisors": [
+    { "id": "ADV001", "name": "Dr. Tan" },
+    { "id": "ADV002", "name": "Prof. Lee" },
+    { "id": "ADV003", "name": "Ms. Kumar" }
+  ],
+  "students": [
+    { "id": "S1234567", "name": "Alice Ng", "advisorId": "ADV001" },
+    { "id": "S2345678", "name": "Ben Chia", "advisorId": "ADV002" },
+    { "id": "S3456789", "name": "Chloe Tan", "advisorId": "ADV003" }
+  ],
+  "availability": {
+    "ADV001": { "1": ["09:00","09:30","10:00"], "2": ["10:00","10:30","11:00"], "4": ["14:00","14:30","15:00"] },
+    "ADV002": { "1": ["11:00","11:30"], "3": ["09:00","09:30","10:00","10:30"], "5": ["14:00","14:30"] },
+    "ADV003": { "2": ["09:00","09:30"], "4": ["10:00","10:30","11:00"], "5": ["15:00","15:30"] }
+  },
+  "timeSlots": [
+    "09:00", "09:30", "10:00", "10:30",
+    "11:00", "11:30", "14:00", "14:30",
+    "15:00", "15:30"
+  ],
+  "filteredSlots": [],
+  "appointments": [
+    {
+      "id": "APT-1001",
+      "studentName": "Alice Ng",
+      "studentId": "S1234567",
+      "advisorId": "ADV001",
+      "advisorName": "Dr. Tan",
+      "date": "2026-01-22",
+      "time": "09:30",
+      "notes": "Discuss semester plan"
+    },
+    {
+      "id": "APT-1002",
+      "studentName": "Ben Chia",
+      "studentId": "S2345678",
+      "advisorId": "ADV002",
+      "advisorName": "Prof. Lee",
+      "date": "2026-01-23",
+      "time": "11:00",
+      "notes": "Course selection advice"
+    }
+  ],
+  "draft": {
+    "studentName": "",
+    "studentId": "",
+    "advisorId": "",
+    "date": null,
+    "time": "",
+    "notes": ""
+  }
+}

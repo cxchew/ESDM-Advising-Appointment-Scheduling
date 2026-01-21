@@ -32,4 +32,11 @@ An SAP Fiori application.
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
+### Advising Appointment Scheduling (Sub-module)
+
+- Navigate to the home view and click "Open Advising Scheduling" to access the appointments module.
+- Create an appointment by filling Student Name, Student ID, Advisor, Date, Time, and optional Notes, then press "Create Appointment".
+- Existing appointments appear in the list; use "Cancel" to remove an appointment.
+- This sub-module uses a local JSON model with mock data at webapp/model/appointments.json and does not connect to external services.
+
 

@@ -19,6 +19,9 @@ sap.ui.define([
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
+            // set the appointments model
+            this.setModel(models.createAppointmentsModel(), "appointments");
+
             // enable routing
             this.getRouter().initialize();
         }

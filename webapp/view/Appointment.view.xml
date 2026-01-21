@@ -1,0 +1,87 @@
+<mvc:View controllerName="project1.controller.Appointment"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="appointmentPage" title="{i18n>appointmentTitle}">
+        <content>
+            <VBox width="100%" renderType="Bare">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>newAppointment}">
+                    <f:content>
+                        <Label text="{i18n>student}"/>
+                        <Select selectedKey="{appointments>/draft/studentId}" items="{appointments>/students}" change="onStudentChange">
+                            <items>
+                                <core:Item key="{appointments>id}" text="{appointments>name}"/>
+                            </items>
+                        </Select>
+
+                        <Label text="{i18n>studentName}"/>
+                        <Input value="{appointments>/draft/studentName}" placeholder="{i18n>studentNamePH}"/>
+
+                        <Label text="{i18n>studentId}"/>
+                        <Input value="{appointments>/draft/studentId}" placeholder="{i18n>studentIdPH}"/>
+
+                        <Label text="{i18n>advisor}"/>
+                        <Select selectedKey="{appointments>/draft/advisorId}" items="{appointments>/advisors}" change="onAdvisorChange">
+                            <items>
+                                <core:Item key="{appointments>id}" text="{appointments>name}"/>
+                            </items>
+                        </Select>
+
+                        <Label text="{i18n>date}"/>
+                        <DatePicker value="{appointments>/draft/date}" valueFormat="yyyy-MM-dd" displayFormat="long" change="onDateChange"/>
+
+                        <Label text="{i18n>time}"/>
+                        <Select selectedKey="{appointments>/draft/time}" items="{appointments>/filteredSlots}">
+                            <items>
+                                <core:Item key="{appointments>}" text="{appointments>}"/>
+                            </items>
+                        </Select>
+
+                        <Label text="{i18n>notes}"/>
+                        <TextArea value="{appointments>/draft/notes}" rows="3"/>
+
+                        <Toolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <Button text="{i18n>create}" type="Emphasized" press="onCreateAppointment"/>
+                        </Toolbar>
+                    </f:content>
+                </f:SimpleForm>
+
+                <Table id="tblAppointments" width="100%" items="{appointments>/appointments}">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>appointmentsList}" level="H3"/>
+                            <ToolbarSpacer/>
+                            <Button text="{i18n>refresh}" press="onRefresh"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column><Text text="{i18n>studentName}"/></Column>
+                        <Column><Text text="{i18n>studentId}"/></Column>
+                        <Column><Text text="{i18n>advisor}"/></Column>
+                        <Column><Text text="{i18n>date}"/></Column>
+                        <Column><Text text="{i18n>time}"/></Column>
+                        <Column><Text text="{i18n>notes}"/></Column>
+                        <Column width="8rem"><Text text="{i18n>actions}"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{appointments>studentName}"/>
+                                <Text text="{appointments>studentId}"/>
+                                <Text text="{appointments>advisorName}"/>
+                                <Text text="{appointments>date}"/>
+                                <Text text="{appointments>time}"/>
+                                <Text text="{appointments>notes}"/>
+                                <HBox justifyContent="End">
+                                    <Button text="{i18n>cancel}" type="Transparent" press="onCancelAppointment"/>
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
