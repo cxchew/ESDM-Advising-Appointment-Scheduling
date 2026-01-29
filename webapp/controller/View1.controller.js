@@ -9,6 +9,9 @@ sap.ui.define([
         ,
         onNavToAppointments() {
             this.getOwnerComponent().getRouter().navTo("AppointmentRoute");
+        },
+        onNavToStudentDashboard() {
+            this.getOwnerComponent().getRouter().navTo("StudentDashboardRoute");
         }
     });
 });

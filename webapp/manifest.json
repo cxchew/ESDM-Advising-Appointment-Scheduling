@@ -87,6 +87,13 @@
           "target": [
             "AppointmentTarget"
           ]
+        },
+        {
+          "name": "StudentDashboardRoute",
+          "pattern": "student-dashboard",
+          "target": [
+            "StudentDashboardTarget"
+          ]
         }
       ],
       "targets": {
@@ -97,6 +104,10 @@
         "AppointmentTarget": {
           "id": "Appointment",
           "name": "Appointment"
+        },
+        "StudentDashboardTarget": {
+          "id": "StudentDashboard",
+          "name": "StudentDashboard"
         }
       }
     },

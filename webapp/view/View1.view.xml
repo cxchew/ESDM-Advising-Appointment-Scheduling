@@ -8,6 +8,7 @@
                 <Toolbar design="Transparent">
                     <ToolbarSpacer/>
                     <Button text="{i18n>openAppointments}" type="Emphasized" press="onNavToAppointments"/>
+                    <Button text="{i18n>openStudentDashboard}" type="Emphasized" press="onNavToStudentDashboard"/>
                 </Toolbar>
             </VBox>
         </content>
