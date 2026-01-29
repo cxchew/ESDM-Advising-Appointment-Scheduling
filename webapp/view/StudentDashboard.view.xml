@@ -7,24 +7,17 @@
     <Page id="studentDashboardPage" title="{i18n>studentDashboardTitle}">
         <content>
             <l:VerticalLayout width="100%" class="sapUiContentPadding">
-                <!-- Student Selection -->
-                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>selectStudent}">
-                    <f:content>
-                        <Label text="{i18n>student}"/>
-                        <Select selectedKey="{appointments>/currentStudentId}" items="{appointments>/students}" change="onCurrentStudentChange">
-                            <items>
-                                <core:Item key="{appointments>id}" text="{appointments>name}"/>
-                            </items>
-                        </Select>
-                    </f:content>
-                </f:SimpleForm>
+                <!-- Logged-in Student Info -->
+                <Panel headerText="{i18n>loggedInAs}: {appointments>/currentStudentName}" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <Label text="{i18n>yourAdvisor}"/>
+                        <Text text="{appointments>/currentAdvisorName}"/>
+                    </VBox>
+                </Panel>
 
                 <!-- Booking Form -->
                 <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>bookAppointment}">
                     <f:content>
-                        <Label text="{i18n>yourAdvisor}"/>
-                        <Text text="{appointments>/currentAdvisorName}"/>
-
                         <Label text="{i18n>selectDate}"/>
                         <DatePicker value="{appointments>/studentBooking/date}" valueFormat="yyyy-MM-dd" displayFormat="long" change="onStudentDateChange"/>
 

@@ -46,6 +46,8 @@
       "notes": "Course selection advice"
     }
   ],
+  "loggedInAdvisorId": "ADV001",
+  "loggedInStudentId": "S1234567",
   "draft": {
     "id": null,
     "studentName": "",

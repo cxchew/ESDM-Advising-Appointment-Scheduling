@@ -11,8 +11,6 @@ sap.ui.define([
             
             // Initialize student booking data
             var oModel = this._appointmentsModel;
-            oModel.setProperty("/currentStudentId", "");
-            oModel.setProperty("/currentAdvisorName", "");
             oModel.setProperty("/availableSlots", []);
             oModel.setProperty("/myAppointments", []);
             oModel.setProperty("/studentBooking", {
@@ -21,6 +19,29 @@ sap.ui.define([
                 duration: 60,
                 notes: ""
             });
+            
+            // Auto-load logged-in student
+            this._loadLoggedInStudent();
+        },
+
+        _loadLoggedInStudent: function() {
+            var oModel = this._appointmentsModel;
+            var sStudentId = oModel.getProperty("/loggedInStudentId");
+            var aStudents = oModel.getProperty("/students") || [];
+            var oStudent = aStudents.find(function(s){ return s.id === sStudentId; });
+            
+            if (oStudent) {
+                oModel.setProperty("/currentStudentId", oStudent.id);
+                oModel.setProperty("/currentStudentName", oStudent.name);
+                
+                // Get advisor name
+                var aAdvisors = oModel.getProperty("/advisors") || [];
+                var oAdvisor = aAdvisors.find(function(a){ return a.id === oStudent.advisorId; });
+                oModel.setProperty("/currentAdvisorName", oAdvisor ? oAdvisor.name : "");
+                
+                // Load student's appointments
+                this._loadMyAppointments(oStudent.id);
+            }
         },
 
         onCurrentStudentChange: function(oEvent) {

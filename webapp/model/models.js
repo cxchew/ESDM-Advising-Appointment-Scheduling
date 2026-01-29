@@ -47,6 +47,8 @@ function (JSONModel, Device) {
                     "13:00", "14:00", "15:00", "16:00", "17:00"
                 ],
                 appointments: [],
+                loggedInAdvisorId: "ADV001",  // Simulated logged-in advisor
+                loggedInStudentId: "S1234567", // Simulated logged-in student
                 draft: {
                     id: null,
                     studentName: "",

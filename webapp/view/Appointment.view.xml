@@ -6,10 +6,14 @@
     <Page id="appointmentPage" title="{i18n>appointmentTitle}">
         <content>
             <VBox width="100%" renderType="Bare">
+                <Panel headerText="{i18n>loggedInAs}: {= ${appointments>/loggedInAdvisorId} === 'ADV001' ? 'Dr. Tan' : ${appointments>/loggedInAdvisorId} === 'ADV002' ? 'Prof. Lee' : 'Ms. Kumar' }" class="sapUiSmallMarginBottom">
+                    <Text text="{i18n>advisorView}"/>
+                </Panel>
+                
                 <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>newAppointment}">
                     <f:content>
                         <Label text="{i18n>student}"/>
-                        <Select selectedKey="{appointments>/draft/studentId}" items="{appointments>/students}" change="onStudentChange">
+                        <Select selectedKey="{appointments>/draft/studentId}" items="{appointments>/myStudents}" change="onStudentChange">
                             <items>
                                 <core:Item key="{appointments>id}" text="{appointments>name}"/>
                             </items>

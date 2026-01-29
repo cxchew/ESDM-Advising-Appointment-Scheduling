@@ -10,6 +10,23 @@ sap.ui.define([
             this._appointmentsModel = this.getOwnerComponent().getModel("appointments");
             // Initialize filtered slots
             this._updateFilteredSlots();
+            
+            // Filter students by logged-in advisor
+            this._filterStudentsByAdvisor();
+        },
+
+        _filterStudentsByAdvisor: function() {
+            var oModel = this._appointmentsModel;
+            var sAdvisorId = oModel.getProperty("/loggedInAdvisorId");
+            var aAllStudents = oModel.getProperty("/students") || [];
+            
+            // Filter to show only this advisor's students
+            var aMyStudents = aAllStudents.filter(function(s) {
+                return s.advisorId === sAdvisorId;
+            });
+            
+            // Store filtered students for binding
+            oModel.setProperty("/myStudents", aMyStudents);
         },
 
         onRefresh: function() {
