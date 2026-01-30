@@ -46,9 +46,17 @@ function (JSONModel, Device) {
                     "08:00", "09:00", "10:00", "11:00", "12:00",
                     "13:00", "14:00", "15:00", "16:00", "17:00"
                 ],
-                appointments: [],
-                loggedInAdvisorId: "ADV001",  // Simulated logged-in advisor
-                loggedInStudentId: "S1234567", // Simulated logged-in student
+                availabilitySlots: [],
+                loggedInAdvisorId: "ADV001",
+                loggedInStudentId: "S1234567",
+                mySlots: [],
+                freeSlots: [],
+                myBookedSlots: [],
+                slotDraft: {
+                    date: null,
+                    time: "",
+                    duration: 60
+                },
                 draft: {
                     id: null,
                     studentName: "",

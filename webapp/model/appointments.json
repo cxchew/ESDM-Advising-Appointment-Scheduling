@@ -22,32 +22,54 @@
     "08:00", "09:00", "10:00", "11:00", "12:00",
     "13:00", "14:00", "15:00", "16:00", "17:00"
   ],
-  "appointments": [
+  "availabilitySlots": [
     {
-      "id": "APT-1001",
-      "studentName": "Alice Ng",
-      "studentId": "S1234567",
+      "id": "SLT-1001",
       "advisorId": "ADV001",
       "advisorName": "Dr. Tan",
-      "date": "2026-01-22",
+      "date": "2026-02-01",
       "time": "09:00",
       "duration": 60,
-      "notes": "Discuss semester plan"
+      "status": "booked",
+      "bookedBy": "S1234567",
+      "studentName": "Alice Ng"
     },
     {
-      "id": "APT-1002",
-      "studentName": "Ben Chia",
-      "studentId": "S2345678",
-      "advisorId": "ADV002",
-      "advisorName": "Prof. Lee",
-      "date": "2026-01-23",
+      "id": "SLT-1002",
+      "advisorId": "ADV001",
+      "advisorName": "Dr. Tan",
+      "date": "2026-02-01",
       "time": "11:00",
       "duration": 60,
-      "notes": "Course selection advice"
+      "status": "free",
+      "bookedBy": null,
+      "studentName": null
+    },
+    {
+      "id": "SLT-1003",
+      "advisorId": "ADV001",
+      "advisorName": "Dr. Tan",
+      "date": "2026-02-03",
+      "time": "14:00",
+      "duration": 60,
+      "status": "free",
+      "bookedBy": null,
+      "studentName": null
     }
   ],
   "loggedInAdvisorId": "ADV001",
   "loggedInStudentId": "S1234567",
+  "slotDraft": {
+    "date": null,
+    "time": "",
+    "duration": 60
+  },
+  "studentBooking": {
+    "date": null,
+    "time": "",
+    "duration": 60,
+    "notes": ""
+  },
   "draft": {
     "id": null,
     "studentName": "",

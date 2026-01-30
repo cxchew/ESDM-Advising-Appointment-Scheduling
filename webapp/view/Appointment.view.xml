@@ -6,86 +6,59 @@
     <Page id="appointmentPage" title="{i18n>appointmentTitle}">
         <content>
             <VBox width="100%" renderType="Bare">
+                <!-- Logged-in Advisor -->
                 <Panel headerText="{i18n>loggedInAs}: {= ${appointments>/loggedInAdvisorId} === 'ADV001' ? 'Dr. Tan' : ${appointments>/loggedInAdvisorId} === 'ADV002' ? 'Prof. Lee' : 'Ms. Kumar' }" class="sapUiSmallMarginBottom">
                     <Text text="{i18n>advisorView}"/>
                 </Panel>
-                
-                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>newAppointment}">
+
+                <!-- Create Availability Slot -->
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>createSlot}">
                     <f:content>
-                        <Label text="{i18n>student}"/>
-                        <Select selectedKey="{appointments>/draft/studentId}" items="{appointments>/myStudents}" change="onStudentChange">
-                            <items>
-                                <core:Item key="{appointments>id}" text="{appointments>name}"/>
-                            </items>
-                        </Select>
-
-                        <Label text="{i18n>studentName}"/>
-                        <Input value="{appointments>/draft/studentName}" placeholder="{i18n>studentNamePH}"/>
-
-                        <Label text="{i18n>studentId}"/>
-                        <Input value="{appointments>/draft/studentId}" placeholder="{i18n>studentIdPH}"/>
-
-                        <Label text="{i18n>advisor}"/>
-                        <Select selectedKey="{appointments>/draft/advisorId}" items="{appointments>/advisors}" change="onAdvisorChange">
-                            <items>
-                                <core:Item key="{appointments>id}" text="{appointments>name}"/>
-                            </items>
-                        </Select>
-
                         <Label text="{i18n>date}"/>
-                        <DatePicker value="{appointments>/draft/date}" valueFormat="yyyy-MM-dd" displayFormat="long" change="onDateChange"/>
+                        <DatePicker value="{appointments>/slotDraft/date}" valueFormat="yyyy-MM-dd" displayFormat="long"/>
 
                         <Label text="{i18n>time}"/>
-                        <Select selectedKey="{appointments>/draft/time}" items="{appointments>/timeSlots}">
+                        <Select selectedKey="{appointments>/slotDraft/time}" items="{appointments>/timeSlots}">
                             <items>
                                 <core:Item key="{appointments>}" text="{appointments>}"/>
                             </items>
                         </Select>
 
                         <Label text="{i18n>duration}"/>
-                        <Input value="{appointments>/draft/duration}" type="Number" description="{i18n>minutes}"/>
-
-                        <Label text="{i18n>notes}"/>
-                        <TextArea value="{appointments>/draft/notes}" rows="3"/>
+                        <Input value="{appointments>/slotDraft/duration}" type="Number" description="{i18n>minutes}"/>
 
                         <Toolbar design="Transparent">
                             <ToolbarSpacer/>
-                            <Button text="{= ${appointments>/draft/isRescheduleMode} ? 'Update Appointment' : ${i18n>create} }" type="Emphasized" press="onCreateAppointment"/>
+                            <Button text="{i18n>addSlot}" type="Emphasized" press="onAddSlot"/>
                         </Toolbar>
                     </f:content>
                 </f:SimpleForm>
 
-                <Table id="tblAppointments" width="100%" items="{appointments>/appointments}" alternateRowColors="true">
+                <!-- My Availability Slots -->
+                <Table id="tblMySlots" width="100%" items="{appointments>/mySlots}" alternateRowColors="true" class="sapUiSmallMarginTop">
                     <headerToolbar>
                         <Toolbar>
-                            <Title text="{i18n>appointmentsList}" level="H3"/>
-                            <ToolbarSpacer/>
-                            <Button text="{i18n>refresh}" press="onRefresh"/>
+                            <Title text="{i18n>myAvailabilitySlots}" level="H3"/>
                         </Toolbar>
                     </headerToolbar>
                     <columns>
-                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>studentName}"/></Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>studentId}"/></Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>advisor}"/></Column>
                         <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>date}"/></Column>
                         <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>time}"/></Column>
-                        <Column minScreenWidth="Desktop" demandPopin="true"><Text text="{i18n>duration}"/></Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"><Text text="{i18n>notes}"/></Column>
-                        <Column width="10rem" minScreenWidth="Desktop"><Text text="{i18n>actions}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>duration}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>status}"/></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"><Text text="{i18n>bookedBy}"/></Column>
+                        <Column width="8rem" minScreenWidth="Desktop"><Text text="{i18n>actions}"/></Column>
                     </columns>
                     <items>
                         <ColumnListItem>
                             <cells>
-                                <Text text="{appointments>studentName}" wrapping="true"/>
-                                <Text text="{appointments>studentId}" wrapping="true"/>
-                                <Text text="{appointments>advisorName}" wrapping="true"/>
                                 <Text text="{appointments>date}" wrapping="true"/>
                                 <Text text="{appointments>time}" wrapping="true"/>
                                 <Text text="{appointments>duration}" wrapping="true"/>
-                                <Text text="{appointments>notes}" wrapping="true"/>
+                                <ObjectStatus text="{appointments>status}" state="{= ${appointments>status} === 'free' ? 'Success' : 'Warning' }"/>
+                                <Text text="{= ${appointments>studentName} ? ${appointments>studentName} : '-' }" wrapping="true"/>
                                 <HBox justifyContent="End" wrap="Wrap">
-                                    <Button text="{i18n>reschedule}" type="Transparent" press="onRescheduleAppointment"/>
-                                    <Button text="{i18n>cancel}" type="Transparent" press="onCancelAppointment"/>
+                                    <Button text="{i18n>deleteSlot}" type="Transparent" press="onDeleteSlot" enabled="{= ${appointments>status} === 'free' }"/>
                                 </HBox>
                             </cells>
                         </ColumnListItem>
