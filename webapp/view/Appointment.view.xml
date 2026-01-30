@@ -38,12 +38,22 @@
                 <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="{i18n>createSlot}">
                     <f:content>
                         <Label text="{i18n>date}"/>
-                        <DatePicker value="{appointments>/slotDraft/date}" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+                        <DatePicker value="{appointments>/slotDraft/date}" valueFormat="yyyy-MM-dd" displayFormat="long" placeholder="Select a date"/>
 
                         <Label text="{i18n>time}"/>
-                        <Select selectedKey="{appointments>/slotDraft/time}" items="{appointments>/timeSlots}">
+                        <Select selectedKey="{appointments>/slotDraft/time}" forceSelection="false">
                             <items>
-                                <core:Item key="{appointments>}" text="{appointments>}"/>
+                                <core:Item key="" text="Select"/>
+                                <core:Item key="08:00" text="08:00"/>
+                                <core:Item key="09:00" text="09:00"/>
+                                <core:Item key="10:00" text="10:00"/>
+                                <core:Item key="11:00" text="11:00"/>
+                                <core:Item key="12:00" text="12:00"/>
+                                <core:Item key="13:00" text="13:00"/>
+                                <core:Item key="14:00" text="14:00"/>
+                                <core:Item key="15:00" text="15:00"/>
+                                <core:Item key="16:00" text="16:00"/>
+                                <core:Item key="17:00" text="17:00"/>
                             </items>
                         </Select>
 

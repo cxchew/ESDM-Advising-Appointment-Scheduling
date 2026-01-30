@@ -34,6 +34,20 @@ sap.ui.define([
             }
 
             var sAdvisorId = oModel.getProperty("/loggedInAdvisorId");
+            var aAllSlots = oModel.getProperty("/availabilitySlots") || [];
+            
+            // Check for duplicate slot (same advisor, date, and time)
+            var bDuplicateExists = aAllSlots.some(function(slot) {
+                return slot.advisorId === sAdvisorId && 
+                       slot.date === oSlot.date && 
+                       slot.time === oSlot.time;
+            });
+            
+            if (bDuplicateExists) {
+                MessageBox.error(this.getResourceBundle().getText("duplicateSlotError"));
+                return;
+            }
+
             var aAdvisors = oModel.getProperty("/advisors") || [];
             var oAdvisor = aAdvisors.find(function(a) { return a.id === sAdvisorId; });
 
