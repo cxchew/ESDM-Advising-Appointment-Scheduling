@@ -23,14 +23,71 @@ function (JSONModel, Device) {
         createAppointmentsModel: function () {
             var oModel = new JSONModel({
                 advisors: [
-                    { id: "ADV001", name: "Dr. Tan" },
-                    { id: "ADV002", name: "Prof. Lee" },
-                    { id: "ADV003", name: "Ms. Kumar" }
+                    { 
+                        id: "ADV001", 
+                        name: "Dr. Tan", 
+                        email: "dr.tan@university.edu",
+                        department: "School of Engineering",
+                        phone: "+65 6790-6789",
+                        officeHours: "Mon-Fri 2:00 PM - 5:00 PM",
+                        specialization: "Software Engineering",
+                        password: "advisor123"
+                    },
+                    { 
+                        id: "ADV002", 
+                        name: "Prof. Lee", 
+                        email: "prof.lee@university.edu",
+                        department: "School of Science",
+                        phone: "+65 6790-6701",
+                        officeHours: "Tue-Thu 10:00 AM - 12:00 PM",
+                        specialization: "Data Science",
+                        password: "advisor123"
+                    },
+                    { 
+                        id: "ADV003", 
+                        name: "Ms. Kumar", 
+                        email: "ms.kumar@university.edu",
+                        department: "School of Business",
+                        phone: "+65 6790-6703",
+                        officeHours: "Mon, Wed, Fri 3:00 PM - 5:00 PM",
+                        specialization: "Business Analytics",
+                        password: "advisor123"
+                    }
                 ],
                 students: [
-                    { id: "S1234567", name: "Alice Ng", advisorId: "ADV001" },
-                    { id: "S2345678", name: "Ben Chia", advisorId: "ADV002" },
-                    { id: "S3456789", name: "Chloe Tan", advisorId: "ADV003" }
+                    { 
+                        id: "S1234567", 
+                        name: "Alice Ng", 
+                        email: "alice.ng@student.edu",
+                        matric: "U1234567",
+                        program: "Bachelor of Engineering (Software)",
+                        year: "Year 2",
+                        advisorId: "ADV001",
+                        advisorName: "Dr. Tan",
+                        password: "student123"
+                    },
+                    { 
+                        id: "S2345678", 
+                        name: "Ben Chia", 
+                        email: "ben.chia@student.edu",
+                        matric: "U2345678",
+                        program: "Bachelor of Science (Data Science)",
+                        year: "Year 3",
+                        advisorId: "ADV002",
+                        advisorName: "Prof. Lee",
+                        password: "student123"
+                    },
+                    { 
+                        id: "S3456789", 
+                        name: "Chloe Tan", 
+                        email: "chloe.tan@student.edu",
+                        matric: "U3456789",
+                        program: "Bachelor of Business (Analytics)",
+                        year: "Year 1",
+                        advisorId: "ADV003",
+                        advisorName: "Ms. Kumar",
+                        password: "student123"
+                    }
                 ],
                 // Weekly availability per advisor: 0=Sun ... 6=Sat
                 availability: {
@@ -48,7 +105,9 @@ function (JSONModel, Device) {
                 ],
                 availabilitySlots: [],
                 loggedInAdvisorId: "ADV001",
+                loggedInAdvisorName: "Dr. Tan",
                 loggedInStudentId: "S1234567",
+                loggedInStudentName: "Alice Ng",
                 mySlots: [],
                 freeSlots: [],
                 myBookedSlots: [],

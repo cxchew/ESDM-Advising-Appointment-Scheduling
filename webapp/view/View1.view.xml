@@ -1,11 +1,103 @@
 <mvc:View controllerName="project1.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
     <Page id="page" title="{i18n>title}">
         <content>
             <VBox class="sapUiSmallMargin" width="100%">
-                <Text text="{i18n>welcomeText}"/>
-                <Toolbar design="Transparent">
+                <Text text="{i18n>welcomeText}" class="sapUiMediumMarginBottom"/>
+
+                <!-- Advisor Login Card -->
+                <Panel headerText="Advisor Login" expandable="true" expanded="true" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <f:SimpleForm layout="ResponsiveGridLayout" editable="false">
+                            <f:content>
+                                <Label text="Username/ID"/>
+                                <Text text="ADV001"/>
+                                
+                                <Label text="Password"/>
+                                <Text text="advisor123"/>
+                                
+                                <Label text="Name"/>
+                                <Text text="Dr. Tan"/>
+                                
+                                <Label text="Email"/>
+                                <Text text="dr.tan@university.edu"/>
+                                
+                                <Label text="Department"/>
+                                <Text text="School of Engineering"/>
+                                
+                                <Label text="Specialization"/>
+                                <Text text="Software Engineering"/>
+                                
+                                <Label text="Phone"/>
+                                <Text text="+65 6790-6789"/>
+                                
+                                <Label text="Office Hours"/>
+                                <Text text="Mon-Fri 2:00 PM - 5:00 PM"/>
+                                
+                                <Label text="Students Assigned"/>
+                                <Text text="1 student (Alice Ng - S1234567)"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </Panel>
+
+                <!-- Student Login Card -->
+                <Panel headerText="Student Login" expandable="true" expanded="true" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <f:SimpleForm layout="ResponsiveGridLayout" editable="false">
+                            <f:content>
+                                <Label text="Username/ID"/>
+                                <Text text="S1234567"/>
+                                
+                                <Label text="Password"/>
+                                <Text text="student123"/>
+                                
+                                <Label text="Name"/>
+                                <Text text="Alice Ng"/>
+                                
+                                <Label text="Email"/>
+                                <Text text="alice.ng@student.edu"/>
+                                
+                                <Label text="Matriculation Number"/>
+                                <Text text="U1234567"/>
+                                
+                                <Label text="Program"/>
+                                <Text text="Bachelor of Engineering (Software)"/>
+                                
+                                <Label text="Current Year"/>
+                                <Text text="Year 2"/>
+                                
+                                <Label text="Assigned Advisor"/>
+                                <Text text="Dr. Tan (ADV001)"/>
+                                
+                                <Label text="Advisor Email"/>
+                                <Text text="dr.tan@university.edu"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </Panel>
+
+                <!-- Alternative Test Accounts -->
+                <Panel headerText="Alternative Test Accounts" expandable="true" expanded="false" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <Text text="Advisor Accounts:" class="sapUiMediumMarginTop"/>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="• ID: ADV002, Password: advisor123 (Prof. Lee - Data Science)"/>
+                            <Text text="• ID: ADV003, Password: advisor123 (Ms. Kumar - Business Analytics)"/>
+                        </VBox>
+                        
+                        <Text text="Student Accounts:" class="sapUiMediumMarginTop"/>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="• ID: S2345678, Password: student123 (Ben Chia - Year 3, Advisor: Prof. Lee)"/>
+                            <Text text="• ID: S3456789, Password: student123 (Chloe Tan - Year 1, Advisor: Ms. Kumar)"/>
+                        </VBox>
+                    </VBox>
+                </Panel>
+
+                <!-- Navigation Buttons -->
+                <Toolbar design="Transparent" class="sapUiMediumMarginTop">
                     <ToolbarSpacer/>
                     <Button text="{i18n>openAppointments}" type="Emphasized" press="onNavToAppointments"/>
                     <Button text="{i18n>openStudentDashboard}" type="Emphasized" press="onNavToStudentDashboard"/>

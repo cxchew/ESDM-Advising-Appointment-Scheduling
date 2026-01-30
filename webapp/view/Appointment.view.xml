@@ -6,9 +6,32 @@
     <Page id="appointmentPage" title="{i18n>appointmentTitle}">
         <content>
             <VBox width="100%" renderType="Bare">
-                <!-- Logged-in Advisor -->
-                <Panel headerText="{i18n>loggedInAs}: {= ${appointments>/loggedInAdvisorId} === 'ADV001' ? 'Dr. Tan' : ${appointments>/loggedInAdvisorId} === 'ADV002' ? 'Prof. Lee' : 'Ms. Kumar' }" class="sapUiSmallMarginBottom">
-                    <Text text="{i18n>advisorView}"/>
+                <!-- Logged-in Advisor Profile -->
+                <Panel headerText="Advisor Profile - Logged In" class="sapUiSmallMarginBottom">
+                    <VBox class="sapUiSmallMargin">
+                        <HBox>
+                            <Label text="Name:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Dr. Tan" class="sapUiTinyMarginEnd"/>
+                            <Text text="(ADV001)" class="sapUiTinyMarginEnd"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Email:" class="sapUiTinyMarginEnd"/>
+                            <Text text="dr.tan@university.edu"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Department:" class="sapUiTinyMarginEnd"/>
+                            <Text text="School of Engineering"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Specialization:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Software Engineering"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Office Hours:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Mon-Fri 2:00 PM - 5:00 PM"/>
+                        </HBox>
+                        <MessageStrip text="{i18n>advisorView}" type="Information" showIcon="true" class="sapUiTinyMarginTop"/>
+                    </VBox>
                 </Panel>
 
                 <!-- Create Availability Slot -->

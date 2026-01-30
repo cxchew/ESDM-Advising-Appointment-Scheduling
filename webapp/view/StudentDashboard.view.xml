@@ -6,11 +6,35 @@
     <Page id="studentDashboardPage" title="{i18n>studentDashboardTitle}">
         <content>
             <VBox width="100%" renderType="Bare">
-                <!-- Logged-in Student & Advisor Info -->
-                <Panel headerText="{i18n>loggedInAs}: {appointments>/loggedInStudentName}" class="sapUiSmallMarginBottom">
-                    <VBox>
-                        <Text text="{i18n>studentView}"/>
-                        <Text text="{= 'Advisor: ' + ${appointments>/loggedInAdvisorName} }" class="sapUiSmallMarginTop"/>
+                <!-- Logged-in Student Profile -->
+                <Panel headerText="Student Profile - Logged In" class="sapUiSmallMarginBottom">
+                    <VBox class="sapUiSmallMargin">
+                        <HBox>
+                            <Label text="Name:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Alice Ng" class="sapUiTinyMarginEnd"/>
+                            <Text text="(S1234567)" class="sapUiTinyMarginEnd"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Email:" class="sapUiTinyMarginEnd"/>
+                            <Text text="alice.ng@student.edu"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Matriculation:" class="sapUiTinyMarginEnd"/>
+                            <Text text="U1234567"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Program:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Bachelor of Engineering (Software)"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Year:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Year 2"/>
+                        </HBox>
+                        <Toolbar design="Transparent" class="sapUiTinyMarginTop">
+                            <Label text="Assigned Advisor:" class="sapUiTinyMarginEnd"/>
+                            <Text text="Dr. Tan (ADV001) - School of Engineering"/>
+                        </Toolbar>
+                        <MessageStrip text="{i18n>studentView}" type="Information" showIcon="true" class="sapUiTinyMarginTop"/>
                     </VBox>
                 </Panel>
 
