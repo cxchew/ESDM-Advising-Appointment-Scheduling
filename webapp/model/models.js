@@ -114,7 +114,9 @@ function (JSONModel, Device) {
                 slotDraft: {
                     date: null,
                     time: "",
-                    duration: 60
+                    duration: 60,
+                    isEditMode: false,
+                    editSlotId: null
                 },
                 draft: {
                     id: null,

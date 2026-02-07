@@ -58,11 +58,12 @@
                         </Select>
 
                         <Label text="{i18n>duration}"/>
-                        <Input value="{appointments>/slotDraft/duration}" type="Number" description="{i18n>minutes}"/>
+                        <Input value="{appointments>/slotDraft/duration}" type="Number" description="{i18n>minutes}" maxLength="2"/>
 
                         <Toolbar design="Transparent">
                             <ToolbarSpacer/>
-                            <Button text="{i18n>addSlot}" type="Emphasized" press="onAddSlot"/>
+                            <Button text="{= ${appointments>/slotDraft/isEditMode} ? 'Update Slot' : '{i18n>addSlot}' }" type="Emphasized" press="onAddSlot"/>
+                            <Button text="Cancel" type="Transparent" press="onCancelEdit" visible="{= ${appointments>/slotDraft/isEditMode} }" class="sapUiTinyMarginStart"/>
                         </Toolbar>
                     </f:content>
                 </f:SimpleForm>
@@ -91,6 +92,7 @@
                                 <ObjectStatus text="{appointments>status}" state="{= ${appointments>status} === 'free' ? 'Success' : 'Warning' }"/>
                                 <Text text="{= ${appointments>studentName} ? ${appointments>studentName} : '-' }" wrapping="true"/>
                                 <HBox justifyContent="End" wrap="Wrap">
+                                    <Button text="Edit" type="Transparent" press="onEditSlot" enabled="{= ${appointments>status} === 'free' }" class="sapUiTinyMarginEnd"/>
                                     <Button text="{i18n>deleteSlot}" type="Transparent" press="onDeleteSlot" enabled="{= ${appointments>status} === 'free' }"/>
                                 </HBox>
                             </cells>
