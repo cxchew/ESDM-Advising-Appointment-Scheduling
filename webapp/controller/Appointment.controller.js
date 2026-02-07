@@ -71,7 +71,7 @@ sap.ui.define([
                     aSlots[iIndex].time = oSlot.time;
                     aSlots[iIndex].duration = oSlot.duration || 60;
                     oModel.setProperty("/availabilitySlots", aSlots);
-                    MessageToast.show("Slot updated successfully");
+                    MessageBox.success("Availability slot updated successfully!\n\nDate: " + oSlot.date + "\nTime: " + oSlot.time + "\nDuration: " + oSlot.duration + " minutes");
                 }
             } else {
                 // Create new slot
@@ -88,7 +88,7 @@ sap.ui.define([
                 };
                 aSlots.push(oNewSlot);
                 oModel.setProperty("/availabilitySlots", aSlots);
-                MessageToast.show(this.getResourceBundle().getText("slotCreated"));
+                MessageBox.success("Availability slot created successfully!\n\nDate: " + oSlot.date + "\nTime: " + oSlot.time + "\nDuration: " + oSlot.duration + " minutes");
             }
 
             this._loadAdvisorSlots();

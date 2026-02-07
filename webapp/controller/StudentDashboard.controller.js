@@ -85,7 +85,7 @@ sap.ui.define([
             this._loadFreeSlots();
             this._loadMyBookedSlots(sStudentId);
             
-            MessageToast.show(this.getResourceBundle().getText("appointmentBooked"));
+            MessageBox.success("Appointment booked successfully!\n\nAdvisor: Dr. Tan\nDate: " + oSlot.date + "\nTime: " + oSlot.time + "\nDuration: " + oSlot.duration + " minutes");
         },
 
         onCancelBooking: function(oEvent) {
@@ -114,7 +114,7 @@ sap.ui.define([
                         this._loadFreeSlots();
                         this._loadMyBookedSlots(sStudentId);
                         
-                        MessageToast.show(this.getResourceBundle().getText("bookingCancelled"));
+                        MessageBox.success("Booking cancelled successfully!\n\nThe slot is now available for booking again.");
                     }
                 }.bind(this)
             });

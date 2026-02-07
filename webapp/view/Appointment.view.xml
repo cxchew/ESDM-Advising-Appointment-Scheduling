@@ -62,7 +62,7 @@
 
                         <Toolbar design="Transparent">
                             <ToolbarSpacer/>
-                            <Button text="{= ${appointments>/slotDraft/isEditMode} ? 'Update Slot' : '{i18n>addSlot}' }" type="Emphasized" press="onAddSlot"/>
+                            <Button text="{= ${appointments>/slotDraft/isEditMode} ? 'Update Slot' : 'Add Slot' }" type="Emphasized" press="onAddSlot"/>
                             <Button text="Cancel" type="Transparent" press="onCancelEdit" visible="{= ${appointments>/slotDraft/isEditMode} }" class="sapUiTinyMarginStart"/>
                         </Toolbar>
                     </f:content>
