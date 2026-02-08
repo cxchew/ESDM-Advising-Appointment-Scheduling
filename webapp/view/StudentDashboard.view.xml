@@ -43,6 +43,8 @@
                     <headerToolbar>
                         <Toolbar>
                             <Title text="{i18n>availableSlotsToBook}" level="H3"/>
+                            <ToolbarSpacer/>
+                            <Button icon="sap-icon://refresh" text="Refresh" type="Transparent" press="onRefreshSlots"/>
                         </Toolbar>
                     </headerToolbar>
                     <columns>

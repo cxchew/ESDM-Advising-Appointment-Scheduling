@@ -120,6 +120,13 @@ sap.ui.define([
             });
         },
 
+        onRefreshSlots: function() {
+            this._loadFreeSlots();
+            var sStudentId = this._appointmentsModel.getProperty("/currentStudentId");
+            this._loadMyBookedSlots(sStudentId);
+            MessageToast.show("Available slots refreshed");
+        },
+
         getResourceBundle: function() {
             return this.getOwnerComponent().getModel("i18n").getResourceBundle();
         }
